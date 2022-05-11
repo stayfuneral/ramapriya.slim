@@ -1,0 +1,22 @@
+{
+  "name": "ramapriya/ramapriya.slim",
+  "description": "Bitrix module for Slim framework usage",
+  "minimum-stability": "dev",
+  "type": "bitrix-d7-module",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Roman Gonyukov",
+      "email": "stay.funeral@gmail.com"
+    }
+  ],
+  "require": {
+    "slim/slim": "4.x-dev",
+    "slim/psr7": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ramapriya\\Slim\\": "lib/"
+    }
+  }
+}
