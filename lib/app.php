@@ -4,10 +4,12 @@ namespace Ramapriya\Slim;
 
 use Bitrix\Main\Config\Option;
 use Bitrix\Main\HttpRequest;
+use Exception;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Ramapriya\Slim\Interfaces\ModuleInterface;
+use Ramapriya\Slim\Services\RouterService;
 use Slim\App as SlimApp;
 
 final class App implements ModuleInterface
@@ -40,6 +42,7 @@ final class App implements ModuleInterface
     /**
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
+     * @throws Exception
      */
     public function init()
     {
@@ -48,13 +51,20 @@ final class App implements ModuleInterface
              * @var HttpRequest $request
              */
             $request = $this->container->get('bitrix.request');
+            $rs = new RouterService();
 
             if(
-                $this->getModuleOption('use_as_default_routing') === 'N' &&
-                $this->getModuleOption('use_as_api_routing')  === 'Y' &&
-                preg_match('/\/api\//', $request->getRequestUri(), $matches)
+                (
+                    $this->getModuleOption('use_as_default_routing') === 'N' &&
+                    $this->getModuleOption('use_as_api_routing')  === 'Y' &&
+                    preg_match('/\/api\//', $request->getRequestUri(), $matches)
+                ) ||
+                $this->getModuleOption('use_as_default_routing')  === 'Y'
             ) {
+                $rs->parseRoutes($this->app);
 
+                $this->app->run();
+                die();
             }
         }
     }
