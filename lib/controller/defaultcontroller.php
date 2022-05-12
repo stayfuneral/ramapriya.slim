@@ -2,7 +2,13 @@
 
 namespace Ramapriya\Slim\Controller;
 
-class DefaultController
-{
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
+class DefaultController extends AbstractController
+{
+    public function index(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
+    {
+        return $response;
+    }
 }
