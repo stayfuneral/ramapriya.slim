@@ -1,9 +1,9 @@
 <?php
 
-use Bitrix\Main\Loader;
+use Bitrix\Main\IO\File;
 
-if(file_exists(__DIR__ . '/vendor/autoload.php')) {
+if(File::isFileExists(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/vendor/autoload.php';
-} else {
-    Loader::registerNamespace('Ramapriya\\Slim\\', __DIR__ . '/lib');
 }
+
+require_once __DIR__ . '/tools/functions.php';
