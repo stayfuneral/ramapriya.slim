@@ -14,6 +14,7 @@ use Ramapriya\Slim\Controller\ApiController;
 use Ramapriya\Slim\Entity\RoutesTable;
 use Ramapriya\Slim\Event\MainListener;
 use Ramapriya\Slim\Interfaces\ModuleInterface;
+use Ramapriya\Slim\Middleware\JsonMiddleware;
 
 Loc::loadMessages(__FILE__);
 
@@ -28,6 +29,7 @@ if(!Loader::includeModule('ramapriya.slim')) {
 class ramapriya_slim extends CModule
 {
     public $MODULE_ID = 'ramapriya.slim';
+    public $MODULE_SORT = 1;
 
     private array $events = [
         [
@@ -44,7 +46,8 @@ class ramapriya_slim extends CModule
             'type' => 'group',
             'method' => 'group',
             'callback' => ApiController::class,
-            'module' => ModuleInterface::MODULE_ID
+            'module' => ModuleInterface::MODULE_ID,
+            'middleware' => JsonMiddleware::class
         ]
     ];
 
