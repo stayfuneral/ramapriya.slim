@@ -17,7 +17,9 @@ use Ramapriya\Slim\Interfaces\ModuleInterface;
 
 Loc::loadMessages(__FILE__);
 
-require dirname(__DIR__) . '/lib/interfaces/moduleinterface.php';
+if(!Loader::includeModule('ramapriya.slim')) {
+    require dirname(__DIR__) . '/lib/interfaces/moduleinterface.php';
+}
 
 /**
  * @property EventManager $eventManager
