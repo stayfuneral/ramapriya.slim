@@ -1,6 +1,7 @@
 {
   "name": "ramapriya/ramapriya.slim",
   "description": "Bitrix module for Slim framework usage",
+  "minimum-stability": "stable",
   "version": "1.0",
   "type": "bitrix-d7-module",
   "license": "proprietary",
