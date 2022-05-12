@@ -2,9 +2,11 @@
 
 namespace Ramapriya\Slim\Entity;
 
+use Bitrix\Main\ArgumentException;
 use Bitrix\Main\ORM\Data\DataManager;
 use Bitrix\Main\ORM\Fields\ArrayField;
 use Bitrix\Main\ORM\Fields\StringField;
+use Bitrix\Main\Web\Json;
 
 class RoutesTable extends DataManager
 {
@@ -18,6 +20,7 @@ class RoutesTable extends DataManager
         return [
             (new StringField('name'))
                 ->configurePrimary()
+                ->configureUnique()
                 ->configureRequired(),
             (new StringField('type'))
                 ->configureRequired(),
@@ -25,8 +28,10 @@ class RoutesTable extends DataManager
                 ->configureRequired(),
             (new StringField('method'))
                 ->configureRequired(),
-            (new StringField('callback'))
+            (new ArrayField('callback'))
                 ->configureRequired(),
+            (new ArrayField('enabled_methods'))
+                ->configureNullable(),
             (new StringField('middleware'))
                 ->configureNullable(),
             (new StringField('module'))
