@@ -1,6 +1,7 @@
 <?php
 
 use Bitrix\Main\Context;
+use Ramapriya\Slim\Services\RouterService;
 
 return [
     'services' => [
@@ -9,6 +10,9 @@ return [
                 'constructor' => static function() {
                     return Context::getCurrent()->getRequest();
                 }
+            ],
+            'ramapriya.routerService' => [
+                'className' => RouterService::class
             ]
         ]
     ]
